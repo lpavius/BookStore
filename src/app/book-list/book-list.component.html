@@ -1,0 +1,13 @@
+<input [(ngModel)]="searchQuery" (keydown.enter)="search()" placeholder="Titre, ISBN, Auteur">
+<a (click)="search()" class="waves-effect waves-light btn">Search</a>
+<div *ngIf="searchResults !== null">
+	<div *ngFor="let book of searchResults.items" style="border: 1px solid black">
+		<img src={{book.volumeInfo.imageLinks?.thumbnail}} alt="">
+		<p><a [routerLink]="['/books/', book.id]">{{ book.volumeInfo.title }}</a></p>
+		<p>Authors: {{ book.volumeInfo.authors}}</p>
+		<p>Price: {{ book.saleInfo.retailPrice?.amount || "10" }} Eur</p>
+		<!-- <star-rating value={{book.volumeInfo.averageRating}} checkedcolor="red" uncheckedcolor="black" size="24px"    readonly="true" (rate)="onRate($event)"></star-rating> -->
+
+	</div>
+	<p (click)="showMore()">See more...</p>
+</div>

@@ -1,0 +1,20 @@
+<div *ngIf="book">
+	<h1>{{ book.volumeInfo.title }}</h1>
+	<p>de {{ book.volumeInfo.authors}}</p>
+	<p>Genre: {{ book.volumeInfo.categories }}</p>
+	<!-- <span><star-rating value={{book.volumeInfo.averageRating}} checkedcolor="red" uncheckedcolor="black" size="24px"    readonly="true" (rae)="onRate($event)"></star-rating></span> -->
+	<p>Ebook: {{ book.volumeInfo.isEbook ? "Disponible" : "Indisponible" }}</p>	
+	<img src={{book.volumeInfo.imageLinks.small}} alt="">
+	<p>Price: {{ book.saleInfo.retailPrice?.amount || "10" }} Eur</p>
+	<p [innerHTML]="book.volumeInfo.description"></p>
+	<a (click)="addToCart(book)" class="waves-effect waves-light btn">Add to cart</a><br>
+	<div>
+		<u>Detail du produit</u>
+		<p>Nb de page: {{ book.volumeInfo.pageCount }} pages</p>
+		<p>Editeur: {{ book.volumeInfo.publisher }} ({{ book.volumeInfo.publishedDate }})</p>
+		<p>langue: {{ book.volumeInfo.language }}</p>
+		<p>ISBN 10: {{ book.volumeInfo.industryIdentifiers[0]?.identifier }}</p>
+		<p>ISBN 13: {{ book.volumeInfo.industryIdentifiers[1]?.identifier }}</p>
+
+	</div>
+</div>
